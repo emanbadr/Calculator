@@ -1,5 +1,20 @@
 #include <iostream>
-/* Let's write a calculator program */
+/* Let's write a calculator program for real numbers with variables
+ that takes numbers from user input using functions for modularity */
+float addTwoNumbers(float operand1, float operand2) {
+ return operand1 + operand2;
+}
+float subtractTwoNumbers(float operand1, float operand2) {
+ float difference = operand1 - operand2;
+ return difference;
+}
+void multiplyTwoNumbers(float operand1, float operand2, float &product) {
+ product = operand1 * operand2;
+}
+bool divideTwoNumbers(float operand1, float operand2, float &quotient) {
+ quotient = operand1 / operand2;
+ return false;
+}
 int main()
 {
  // Ask the user to give us two numbers for our operands
@@ -14,8 +29,13 @@ int main()
  char multiplicationCharacter = '*'; // Character, for times
  char divisionCharacter = '/'; // Character, for division
  // Perform all operations and output result to screen
- std::cout << myNumber << additionCharacter << myOtherNumber << "= " << myNumber + myOtherNumber << "\n";
- std::cout << myNumber << subtractionCharacter << myOtherNumber << "= "<< myNumber - myOtherNumber << "\n";
- std::cout << myNumber << multiplicationCharacter << myOtherNumber << "= " << myNumber * myOtherNumber << "\n";
+ std::cout << myNumber << additionCharacter << myOtherNumber << "= " << addTwoNumbers(myNumber,myOtherNumber) << "\n";
+ std::cout << myNumber << subtractionCharacter << myOtherNumber << "= " << subtractTwoNumbers(myNumber,myOtherNumber) << "\n";
+ float productNumber; // local variable only usable in main function
+ multiplyTwoNumbers(myNumber,myOtherNumber,productNumber); // function call
+ std::cout << myNumber << multiplicationCharacter << myOtherNumber << "= "<< productNumber << "\n";
  std::cout << myNumber << divisionCharacter << myOtherNumber << "= "<< myNumber / myOtherNumber << "\n";
+ float quotient; // NOT the same variable as quotient in function definition
+ divideTwoNumbers(myNumber,myOtherNumber,quotient); // function call
+ std::cout << myNumber << divisionCharacter << myOtherNumber << "= "<< quotient << "\n";
 }
